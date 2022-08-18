@@ -1,0 +1,8 @@
+2022-08-17T06:31:45+00:00 CRITICAL Uncaught Error: Call to undefined function contactForm() in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\contact.php:50
+Stack trace:
+#0 G:\Pxamp\agaressencellc\wp-includes\template-loader.php(106): include()
+#1 G:\Pxamp\agaressencellc\wp-blog-header.php(19): require_once('G:\\Pxamp\\agares...')
+#2 G:\Pxamp\agaressencellc\index.php(17): require('G:\\Pxamp\\agares...')
+#3 {main}
+  thrown in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\contact.php on line 50
+

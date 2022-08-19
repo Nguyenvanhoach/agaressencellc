@@ -18,39 +18,47 @@
         <div class="container-xxl">
           <div class="row justify-content-center">
             <div class="col-12 col-md-4 mb-4 mb-md-0">
-              <h1 class="logo mx-auto mb-4 mb-lg-4"><span class="text-logo"><?php bloginfo('description'); ?></span><a class="d-block wrap-logo" href="<?php bloginfo('url'); ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img loading="lazy" src="<?php echo get_template_directory_uri();?>/assets/images/logo.svg" class="img-fluid d-block" alt="<?php echo get_bloginfo( 'name' ); ?>"></a></h1>
-              <div class="mb-2 mb-md-2">Agar Essence Ltd.</div>
-              <div class="mb-2 mb-md-2">The Landing Media City UK M50 2ST</div>
-              <div class="mb-2 mb-md-2"><strong>Email:</strong> <a class="text-black text-decoration-none" href="mailto:agaressencellc@gmail.com" title="agaressencellc@gmail.com">agaressencellc@gmail.com</a></div>
-              <div><strong>Tel:</strong> <a class="text-black text-decoration-none" href="tel:0333 050 8269" title="0333 050 8269">0333 050 8269</a></div>
+              <h1 class="logo mx-auto mb-4 mb-lg-4"><span class="text-logo"><?php bloginfo('description'); ?></span><a class="d-block wrap-logo" href="<?php bloginfo('url'); ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img loading="lazy" src="<?php echo get_template_directory_uri();?>/assets/images/logo_white.svg" class="img-fluid d-block" alt="<?php echo get_bloginfo( 'name' ); ?>"></a></h1>
+              <div class="mb-3 mb-md-4">Agar Essence Ltd.</div>
+              <div class="d-flex mb-3 mb-md-4 link-hover-1"><svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512" class="w-35" xml:space="preserve" fill="#ffffff" width="35px" height="25px"><g><g><path d="M446.812,493.966l-67.499-142.781c-1.347-2.849-3.681-5.032-6.48-6.223l-33.58-14.949l58.185-97.518c0.139-0.234,0.27-0.471,0.395-0.713c11.568-22.579,17.434-46.978,17.434-72.515c0-42.959-16.846-83.233-47.435-113.402C337.248,15.703,296.73-0.588,253.745,0.016c-41.748,0.579-81.056,17.348-110.685,47.22c-29.626,29.87-46.078,69.313-46.326,111.066c-0.152,25.515,5.877,50.923,17.431,73.479c0.124,0.241,0.255,0.479,0.394,0.713l58.184,97.517l-33.774,15.031c-2.763,1.229-4.993,3.408-6.285,6.142L65.187,493.966c-2.259,4.775-1.306,10.453,2.388,14.23c3.693,3.777,9.345,4.859,14.172,2.711l84.558-37.646l84.558,37.646c3.271,1.455,7.006,1.455,10.277,0l84.558-37.646l84.558,37.646c1.652,0.735,3.401,1.093,5.135,1.093c3.331,0,6.608-1.318,9.037-3.803C448.119,504.419,449.071,498.743,446.812,493.966z M136.473,219.906c-9.73-19.132-14.599-39.805-14.47-61.453c0.428-72.429,59.686-132.17,132.094-133.173c36.166-0.486,70.263,13.199,95.993,38.576c25.738,25.383,39.911,59.267,39.911,95.412c0,21.359-4.869,41.757-14.473,60.638L266.85,402.054c-3.318,5.56-8.692,6.16-10.849,6.16c-2.158,0-7.532-0.6-10.849-6.16L136.473,219.906z M350.834,447.891c-3.271-1.455-7.006-1.455-10.277,0l-84.558,37.646l-84.558-37.646c-3.271-1.455-7.006-1.455-10.277,0l-58.578,26.08l50.938-107.749l32.258-14.356l37.668,63.133c6.904,11.572,19.072,18.481,32.547,18.481c13.475,0,25.643-6.909,32.547-18.48l37.668-63.133l32.261,14.361l50.935,107.744L350.834,447.891z"/></g></g><g><g><path d="M256.004,101.607c-31.794,0-57.659,25.865-57.659,57.658s25.865,57.658,57.659,57.658c31.793,0.001,57.658-25.865,57.658-57.658S287.797,101.607,256.004,101.607z M256.004,191.657c-17.861,0.001-32.393-14.529-32.393-32.392c0-17.861,14.531-32.392,32.393-32.392c17.861,0,32.392,14.531,32.392,32.392S273.865,191.657,256.004,191.657z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                <span class="ps-2">The Landing Media City UK M50 2ST</span>
+              </div>
+              <div class="d-flex mb-3 mb-md-4 link-hover-1">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" class="w-35" style="enable-background:new 0 0 512 512;" xml:space="preserve" fill="#ffffff" width="35px" height="25px"><g><g><path d="M511.609,197.601c-0.001-0.77-0.173-1.933-0.472-2.603c-0.787-2.854-2.536-5.461-5.154-7.281l-73.292-50.948V82.153c0-7.24-5.872-13.112-13.112-13.112H335.26l-71.743-49.878c-4.484-3.121-10.437-3.134-14.935-0.026l-72.206,49.904H92.426c-7.242,0-13.112,5.872-13.112,13.112v53.973L5.666,187.027c-3.623,2.504-5.583,6.507-5.645,10.6C0.017,197.704,0,197.777,0,197.857l0.391,284.235c0.005,3.477,1.391,6.81,3.852,9.266c2.458,2.451,5.788,3.827,9.26,3.827c0.007,0,0.012,0,0.018,0l485.385-0.667c7.24-0.01,13.104-5.889,13.094-13.13L511.609,197.601z M432.69,168.708l41.898,29.118l-41.898,29.128V168.708z M256.015,45.884l33.31,23.156h-66.812L256.015,45.884z M105.538,95.265h300.928v149.921L305.43,315.428l-41.194-31.954c-0.064-0.05-0.119-0.081-0.181-0.126c-4.604-3.454-11.116-3.581-15.894,0.126l-41.493,32.185l-101.13-69.893V95.265z M79.314,168.003v59.64l-43.146-29.819L79.314,168.003z M26.258,222.867l158.669,109.655L26.578,455.346L26.258,222.867z M51.875,468.909l204.324-158.484l203.591,157.923L51.875,468.909z M327.144,332.271l158.276-110.036l0.32,233.059L327.144,332.271z"/></g></g><g><g><path d="M344.77,147.713H167.234c-7.24,0-13.112,5.872-13.112,13.112s5.872,13.112,13.112,13.112H344.77c7.242,0,13.112-5.872,13.112-13.112S352.012,147.713,344.77,147.713z"/></g></g><g><g><path d="M344.77,215.895H167.234c-7.24,0-13.112,5.872-13.112,13.112c0,7.24,5.872,13.112,13.112,13.112H344.77c7.242,0,13.112-5.872,13.112-13.112C357.882,221.767,352.012,215.895,344.77,215.895z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                <a class="color-ebebeb text-decoration-none ms-2" href="mailto:agaressencellc@gmail.com" title="agaressencellc@gmail.com">agaressencellc@gmail.com</a>
+              </div>
+              <div class="d-flex mb-3 mb-md-4 link-hover-1">
+              <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 476 476" class="w-35" style="enable-background:new 0 0 476 476;" xml:space="preserve" fill="#ffffff" width="35px" height="25px"><g><path d="M400.85,181v-18.3c0-43.8-15.5-84.5-43.6-114.7c-28.8-31-68.4-48-111.6-48h-15.1c-43.2,0-82.8,17-111.6,48c-28.1,30.2-43.6,70.9-43.6,114.7V181c-34.1,2.3-61.2,30.7-61.2,65.4V275c0,36.1,29.4,65.5,65.5,65.5h36.9c6.6,0,12-5.4,12-12V192.8c0-6.6-5.4-12-12-12h-17.2v-18.1c0-79.1,56.4-138.7,131.1-138.7h15.1c74.8,0,131.1,59.6,131.1,138.7v18.1h-17.2c-6.6,0-12,5.4-12,12v135.6c0,6.6,5.4,12,12,12h16.8c-4.9,62.6-48,77.1-68,80.4c-5.5-16.9-21.4-29.1-40.1-29.1h-30c-23.2,0-42.1,18.9-42.1,42.1s18.9,42.2,42.1,42.2h30.1c19.4,0,35.7-13.2,40.6-31c9.8-1.4,25.3-4.9,40.7-13.9c21.7-12.7,47.4-38.6,50.8-90.8c34.3-2.1,61.5-30.6,61.5-65.4v-28.6C461.95,211.7,434.95,183.2,400.85,181z M104.75,316.4h-24.9c-22.9,0-41.5-18.6-41.5-41.5v-28.6c0-22.9,18.6-41.5,41.5-41.5h24.9V316.4z M268.25,452h-30.1c-10,0-18.1-8.1-18.1-18.1s8.1-18.1,18.1-18.1h30.1c10,0,18.1,8.1,18.1,18.1S278.25,452,268.25,452z M437.95,274.9c0,22.9-18.6,41.5-41.5,41.5h-24.9V204.8h24.9c22.9,0,41.5,18.6,41.5,41.5V274.9z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                <a class="color-ebebeb text-decoration-none ms-2" href="tel:0333 050 8269" title="0333 050 8269">0333 050 8269</a>
+              </div>
             </div> 
             <div class="col-12 col-md-8">
               <div class="row gx-3 gx-sm-3 gx-xl-4 gy-4 gy-sm-4 gy-md-0">
                 <div class="col-6 col-sm">
-                  <div class="fw-bold mb-4">Legal Protection</div>
+                  <div class="fw-medium fs-16 color-e09654 mb-4">Legal Protection</div>
                   <ul class="list-unstyled">
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="<?php bloginfo('url'); ?>/" title="Introduction">Privacy Policy</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="<?php bloginfo('url'); ?>/" title="Terms and Conditions">Terms and Conditions</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="<?php bloginfo('url'); ?>/" title="Terms of Sales">Terms of Sales</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="<?php bloginfo('url'); ?>/" title="Legal Disclaimers">Legal Disclaimers</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="<?php bloginfo('url'); ?>/" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="<?php bloginfo('url'); ?>/" title="Terms and Conditions">Terms and Conditions</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="<?php bloginfo('url'); ?>/" title="Terms of Sales">Terms of Sales</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="<?php bloginfo('url'); ?>/" title="Legal Disclaimers">Legal Disclaimers</a></li>
                   </ul>
                 </div>
                 <div class="col-6 col-sm">
-                  <div class="fw-bold text-opacity-87 mb-4">Customer Service Information</div>
+                  <div class="fw-medium fs-16 color-e09654 text-opacity-87 mb-4">Customer Service Information</div>
                   <ul class="list-unstyled">
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="<?php bloginfo('url'); ?>/contact-us" title="Contact us">Contact us</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="" title="Our solutions">Our solutions</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="" title="Training">Training</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="" title="Blogs">Blogs</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="<?php bloginfo('url'); ?>/contact-us" title="Contact us">Contact us</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="" title="About us">About us</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="" title="Site map">Site map</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="" title="Blogs">Blogs</a></li>
                   </ul>
                 </div>
                 <div class="col-6 col-sm">
-                  <div class="fw-bold text-opacity-87 mb-3">Shop</div>
+                  <div class="fw-medium fs-16 color-e09654 text-opacity-87 mb-3">Shop</div>
                   <ul class="list-unstyled">
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="<?php bloginfo('url'); ?>/" title="Product 1">Product 1</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="" title="">Product 2</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="" title="Training">Training</a></li>
-                    <li><a class="fs-13 text-decoration-none mb-3 text-black d-block" href="" title="Blogs">Blogs</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="<?php bloginfo('url'); ?>/" title="Product 1">Product 1</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="" title="">Product 2</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="" title="Training">Training</a></li>
+                    <li><a class="text-decoration-none mb-3 color-ebebeb d-block" href="" title="Blogs">Blogs</a></li>
                   </ul>
                 </div>
               </div>
@@ -68,10 +76,11 @@
           
         </div> 
       </div>
-      <div class="bg-f2f2f2 py-4">
+      <div class="line-1"></div>
+      <div class="py-4">
         <div class="container-xxl">
           <div class="row align-items-center gy-3">
-            <div class="col-12 col-sm-6 text-center text-sm-start">© 2022 Agaressence. All Rights Reserved.</div>
+            <div class="col-12 col-sm-6 text-center text-sm-start">Copyright © 2022 Agaressence. All Rights Reserved.</div>
             <div class="col-12 col-sm-6"><div class="text-center text-sm-end"><img style="max-height: 40px;" loading="lazy" src="<?php echo get_template_directory_uri();?>/assets/images/img_credit-cards.png" class="img-fluid" alt="Payment method"></div></div>
           </div>
         </div>

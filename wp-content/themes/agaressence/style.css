@@ -510,12 +510,21 @@ header.fixed-top {
 .fs-20 {
   font-size: 20px;
 }
+.fs-18 {
+  font-size: 18px;
+}
+.fs-16 {
+  font-size: 16px;
+}
 .fs-15 {
   font-size: 15px;
 }
 .fs-13 {
   font-size: 13px;
 }
+.border-363636 {border: 1px solid #363636 !important;}
+.line-1 {background: #363636 !important;}
+.fw-medium {font-weight: 500;}
 .woocommerce-address-fields input.input-text {
   display: block;
   width: 100%;
@@ -556,6 +565,7 @@ header.fixed-top {
   transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .bg-f2f2f2 {background-color: #f2f2f2;}
+.bg-e5e5e5 {background-color: #e5e5e5;}
 .bg-efefef {background-color: #efefef;}
 .cursor-pointer {
   cursor: pointer;
@@ -667,7 +677,40 @@ footer .wrap-logo img {height: 90px;}
   padding-top: 0.75rem!important;
   padding-bottom: 0.75rem!important;
 }
+.woocommerce-ordering select.orderby {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+footer.footer {
+  color: #ebebeb;
+  background: rgb(28,28,28);
+}
+.color-ebebeb {
+  color: #ebebeb !important;
+}
+.color-e09654 {
+  color: #e09654 !important;
+}
 
+.link-hover-1:hover svg path {
+  fill:#E09654
+}
+.link-hover-1:hover,.link-hover-1:hover a {
+  color: #E09654 !important;
+}
+.w-35 {
+  width: 35px;
+}
 @media (max-width: 1235px) {
   
 }

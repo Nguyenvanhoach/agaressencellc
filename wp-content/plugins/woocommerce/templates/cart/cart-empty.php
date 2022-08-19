@@ -23,8 +23,8 @@ echo '<div class="container-xxl">';
 do_action( 'woocommerce_cart_is_empty' );
 
 if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
-	<p class="return-to-shop">
-		<a class="button wc-backward" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
+	<p class="return-to-shop text-center mt-4">
+		<a class="button wc-backward bg-black text-white text-uppercase px-5 py-3" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
 			<?php
 				/**
 				 * Filter "Return To Shop" text.

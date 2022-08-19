@@ -34,7 +34,7 @@ printf(
 </p>
 
 <?php if ( $notes ) : ?>
-	<h2><?php esc_html_e( 'Order updates', 'woocommerce' ); ?></h2>
+	<h3><?php esc_html_e( 'Order updates', 'woocommerce' ); ?></h3>
 	<ol class="woocommerce-OrderUpdates commentlist notes">
 		<?php foreach ( $notes as $note ) : ?>
 		<li class="woocommerce-OrderUpdate comment note">

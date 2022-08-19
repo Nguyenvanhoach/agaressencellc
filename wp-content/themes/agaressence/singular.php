@@ -12,7 +12,7 @@
 get_header();
 ?>
 
-<main id="site-content">
+<div id="site-content" class="bg-efefef py-5">
 
 	<?php
 
@@ -27,8 +27,8 @@ get_header();
 
 	?>
 
-</main><!-- #site-content -->
+</div><!-- #site-content -->
 
-<?php get_template_part( 'template-parts/footer-menus-widgets' ); ?>
+<?php //get_template_part( 'template-parts/footer-menus-widgets' ); ?>
 
 <?php get_footer(); ?>

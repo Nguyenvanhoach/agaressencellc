@@ -28,7 +28,7 @@ $allowed_html = array(
 );
 ?>
 
-<div class="container-xxl">
+<div class="">
 <p>
 	<?php
 	printf(

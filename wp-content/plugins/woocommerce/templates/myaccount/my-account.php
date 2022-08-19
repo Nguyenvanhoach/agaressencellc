@@ -16,22 +16,26 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-echo '<div class="container-xxl py-5">';
+echo '<div class="container-xxl"><div class="row justify-content-center gx-lg-4 gx-xl-5">';
 /**
  * My Account navigation.
  *
  * @since 2.6.0
  */
-do_action( 'woocommerce_account_navigation' ); ?>
-
-	<div class="woocommerce-MyAccount-content">
-		<?php
-			/**
-			 * My Account content.
-			 *
-			 * @since 2.6.0
-			 */
-			do_action( 'woocommerce_account_content' );
-		?>
+	echo '<div class="col-12 col-md-4">';
+		do_action( 'woocommerce_account_navigation' ); ?>
+	</div>
+	<div class="col-12 col-md-8">
+		<div class="woocommerce-MyAccount-content bg-white p-4 w-100 h-100">
+			<?php
+				/**
+				 * My Account content.
+				 *
+				 * @since 2.6.0
+				 */
+				do_action( 'woocommerce_account_content' );
+			?>
+		</div>
+	</div>
 	</div>
 </div>

@@ -16,10 +16,10 @@
  */
 
 defined( 'ABSPATH' ) || exit;
-
 /*
  * @hooked wc_empty_cart_message - 10
  */
+echo '<div class="container-xxl">';
 do_action( 'woocommerce_cart_is_empty' );
 
 if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
@@ -37,3 +37,4 @@ if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
 		</a>
 	</p>
 <?php endif; ?>
+</div>

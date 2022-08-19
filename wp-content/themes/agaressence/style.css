@@ -491,6 +491,10 @@ header.fixed-top {
   width: 15px;
 }
 .icon-cart {width: 20px;}
+.woocommerce-MyAccount-navigation ul li.is-active a {
+  color: red !important;
+  font-weight: bold;
+}
 .start-10 {
   left: 10px;
 }
@@ -511,6 +515,45 @@ header.fixed-top {
 }
 .fs-13 {
   font-size: 13px;
+}
+.woocommerce-address-fields input.input-text {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.woocommerce-address-fields input.input-text:focus {
+  color: #212529;
+  background-color: #fff;
+  border-color: #86b7fe;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+}
+.woocommerce-address-fields .select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 45px;
+}
+.woocommerce-address-fields .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 43px;
+}
+.woocommerce-address-fields .select2-container--default .select2-selection--single {
+  height: 45px;
+  border: 1px solid #ced4da;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .bg-f2f2f2 {background-color: #f2f2f2;}
 .bg-efefef {background-color: #efefef;}
@@ -635,6 +678,13 @@ footer .wrap-logo img {height: 90px;}
   
 }
 @media (max-width: 768px) {
+  .woocommerce-MyAccount-navigation {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .woocommerce-MyAccount-navigation ul li a{
+    white-space: nowrap;
+  }
   
 }
 @media (max-width: 576px) {

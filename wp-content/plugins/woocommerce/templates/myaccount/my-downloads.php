@@ -26,7 +26,7 @@ if ( $downloads ) : ?>
 
 	<?php do_action( 'woocommerce_before_available_downloads' ); ?>
 
-	<h2><?php echo apply_filters( 'woocommerce_my_account_my_downloads_title', esc_html__( 'Available downloads', 'woocommerce' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h2>
+	<h3><?php echo apply_filters( 'woocommerce_my_account_my_downloads_title', esc_html__( 'Available downloads', 'woocommerce' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h3>
 
 	<ul class="woocommerce-Downloads digital-downloads">
 		<?php foreach ( $downloads as $download ) : ?>

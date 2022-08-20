@@ -18,7 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<li>
+<div>
 	<?php do_action( 'woocommerce_widget_product_review_item_start', $args ); ?>
 
 	<?php
@@ -44,4 +44,4 @@ defined( 'ABSPATH' ) || exit;
 	?>
 
 	<?php do_action( 'woocommerce_widget_product_review_item_end', $args ); ?>
-</li>
+</div>

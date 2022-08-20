@@ -25,7 +25,7 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 }
 
 ?>
-<li>
+<div>
 	<?php do_action( 'woocommerce_widget_product_item_start', $args ); ?>
 
 	<a href="<?php echo esc_url( $product->get_permalink() ); ?>">
@@ -40,4 +40,4 @@ if ( ! is_a( $product, 'WC_Product' ) ) {
 	<?php echo $product->get_price_html(); // PHPCS:Ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
 	<?php do_action( 'woocommerce_widget_product_item_end', $args ); ?>
-</li>
+	</div>

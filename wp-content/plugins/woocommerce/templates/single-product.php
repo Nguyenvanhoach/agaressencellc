@@ -20,42 +20,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header( 'shop' ); ?>
+<div class="bg-efefef pb-5">
+		<?php
+			echo '<div class="container-xxl py-4">';
+				/**
+				 * woocommerce_before_main_content hook.
+				 *
+				 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
+				 * @hooked woocommerce_breadcrumb - 20
+				 */
+				do_action( 'woocommerce_before_main_content' );
+			echo '</div>';
+		?>
+		<div class="container-xxl">
+			<?php while ( have_posts() ) : ?>
+				<?php the_post(); ?>
 
-	<?php
-		/**
-		 * woocommerce_before_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper - 10 (outputs opening divs for the content)
-		 * @hooked woocommerce_breadcrumb - 20
-		 */
-		do_action( 'woocommerce_before_main_content' );
-	?>
+				<?php wc_get_template_part( 'content', 'single-product' ); ?>
 
-		<?php while ( have_posts() ) : ?>
-			<?php the_post(); ?>
+			<?php endwhile; // end of the loop. ?>
 
-			<?php wc_get_template_part( 'content', 'single-product' ); ?>
+			<?php
+				/**
+				 * woocommerce_after_main_content hook.
+				 *
+				 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
+				 */
+				do_action( 'woocommerce_after_main_content' );
+			?>
 
-		<?php endwhile; // end of the loop. ?>
-
-	<?php
-		/**
-		 * woocommerce_after_main_content hook.
-		 *
-		 * @hooked woocommerce_output_content_wrapper_end - 10 (outputs closing divs for the content)
-		 */
-		do_action( 'woocommerce_after_main_content' );
-	?>
-
-	<?php
-		/**
-		 * woocommerce_sidebar hook.
-		 *
-		 * @hooked woocommerce_get_sidebar - 10
-		 */
-		do_action( 'woocommerce_sidebar' );
-	?>
-
+			<?php
+				/**
+				 * woocommerce_sidebar hook.
+				 *
+				 * @hooked woocommerce_get_sidebar - 10
+				 */
+				//do_action( 'woocommerce_sidebar' );
+			?>
+		</div>
+	</div>
 <?php
 get_footer( 'shop' );
 

@@ -41,13 +41,13 @@
 			<div class="container-xxl">     
 				<div class="d-flex justify-content-between align-items-center">
 					<div class="d-flex align-items-center">
-						<div class="d-flex color-8f8e8e cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#menuPrimary" aria-controls="menuPrimary">
+						<div class="d-flex color-8f8e8e cursor-pointer link-hover-1" data-bs-toggle="offcanvas" data-bs-target="#menuPrimary" aria-controls="menuPrimary">
 							<div class="navbar-toggler btn-m p-0 rounded-0" ><span></span><span></span><span></span></div>
-							<span class="ps-2">Menu</span>
+							<span class="ps-2 text-white link-hover-1">Menu</span>
 						</div>
-						<div class="color-8f8e8e ms-3 ms-lg-5 d-flex align-items-center cursor-pointer" data-bs-toggle="offcanvas" data-bs-target="#canvassearch" aria-controls="canvassearch">
-							<div class="icon-search"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16" style="font-size: 14px;"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" class=""></path></svg></div>
-							<span class="ps-2">Search</span>
+						<div class="color-8f8e8e ms-3 ms-lg-5 d-flex align-items-center cursor-pointer link-hover-1" data-bs-toggle="offcanvas" data-bs-target="#canvassearch" aria-controls="canvassearch">
+							<div class="icon-search link-hover-1"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-search fa-w-16" style="font-size: 14px;"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" class=""></path></svg></div>
+							<span class="ps-2 text-white link-hover-1">Search</span>
 						</div>
 						<!-- <div class="search-autocomplete position-relative ms-3 ms-lg-5 d-flex align-items-center">
 							<div class="position-absolute start-0 ">
@@ -61,19 +61,21 @@
 						</div> -->
 
 					</div>
-					<h1 class="logo my-0"><span class="text-logo"><?php bloginfo('description'); ?></span><a class="d-block wrap-logo" href="<?php bloginfo('url'); ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img loading="lazy" src="<?php echo get_template_directory_uri();?>/assets/images/logo.svg" class="img-fluid" alt="<?php echo get_bloginfo( 'name' ); ?>"></a></h1>
+					<h1 class="logo my-0"><span class="text-logo"><?php bloginfo('description'); ?></span><a class="d-block wrap-logo" href="<?php bloginfo('url'); ?>" title="<?php echo get_bloginfo( 'name' ); ?>"><img loading="lazy" src="<?php echo get_template_directory_uri();?>/assets/images/logo_white.svg" class="img-fluid" alt="<?php echo get_bloginfo( 'name' ); ?>"></a></h1>
 					<div class="d-flex align-items-center color-8f8e8e">
-						<a href="<?php bloginfo('url'); ?>/my-account/" class="d-flex color-8f8e8e text-decoration-none" title="Account">							
+						<a href="<?php bloginfo('url'); ?>/my-account/" class="d-flex color-8f8e8e text-decoration-none link-hover-1" title="Account">							
 							<svg class="color-svg icon-user" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
-							<span class="ps-2">Account</span>
+							<span class="ps-2 text-white link-hover-1">Account</span>
 						</a>
-						<a href="<?php bloginfo('url'); ?>/cart/" class="d-flex color-8f8e8e ms-3 ms-lg-5 text-decoration-none" title="Cart">					
+						<a href="<?php bloginfo('url'); ?>/cart/" class="d-flex color-8f8e8e link-hover-1 ms-3 ms-lg-5 text-decoration-none" title="Cart">					
 							<svg class="color-svg icon-cart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M96 0C107.5 0 117.4 8.19 119.6 19.51L121.1 32H541.8C562.1 32 578.3 52.25 572.6 72.66L518.6 264.7C514.7 278.5 502.1 288 487.8 288H170.7L179.9 336H488C501.3 336 512 346.7 512 360C512 373.3 501.3 384 488 384H159.1C148.5 384 138.6 375.8 136.4 364.5L76.14 48H24C10.75 48 0 37.25 0 24C0 10.75 10.75 0 24 0H96zM128 464C128 437.5 149.5 416 176 416C202.5 416 224 437.5 224 464C224 490.5 202.5 512 176 512C149.5 512 128 490.5 128 464zM512 464C512 490.5 490.5 512 464 512C437.5 512 416 490.5 416 464C416 437.5 437.5 416 464 416C490.5 416 512 437.5 512 464z"/></svg>		
-							<span class="ps-2">Cart</span>
+							<span class="ps-2 text-white link-hover-1">Cart <?php if ( !(WC()->cart->is_empty()) ) {
+								echo '(<strong>'. WC()->cart->get_cart_contents_count() .'</strong>)';
+							}?> </span>
 						</a>
 					</div>
 				</div> 
-				<div class="offcanvas offcanvas-start pt-lg-5" tabindex="-1" id="menuPrimary" aria-labelledby="menu">
+				<div class="offcanvas offcanvas-start pt-lg-4" tabindex="-1" id="menuPrimary" aria-labelledby="menu">
 					<div class="offcanvas-body px-0 pb-0">
 						<div class="d-flex flex-column h-100 ">
 						<div class="px-4"> 

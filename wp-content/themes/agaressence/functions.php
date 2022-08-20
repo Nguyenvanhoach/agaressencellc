@@ -1240,21 +1240,62 @@ function contactForm() {
 	    }
 	}
 
-	// Function to remove version numbers
+
+// REMOVE WP EMOJI
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'admin_print_styles', 'print_emoji_styles' );
+// Remove WP Version From Styles 
+add_filter( 'style_loader_src', 'sdt_remove_ver_css_js', 9999 );
+// Remove WP Version From Scripts
+add_filter( 'script_loader_src', 'sdt_remove_ver_css_js', 9999 );
+// Function to remove version numbers
 function sdt_remove_ver_css_js( $src ) {
-	if ( strpos( $src, 'ver=' ) )
-	 $src = remove_query_arg( 'ver', $src );
-	return $src;
+ if ( strpos( $src, 'ver=' ) )
+  $src = remove_query_arg( 'ver', $src );
+ return $src;
 }
-//  // Remove WP Version From Styles 
-// add_filter( 'style_loader_src', 'sdt_remove_ver_css_js', 9999 );
-// // Remove WP Version From Scripts
-// add_filter( 'script_loader_src', 'sdt_remove_ver_css_js', 9999 );
+/**Remove script woocommerce*/
+add_action( 'wp_enqueue_scripts', 'grd_woocommerce_script_cleaner', 99 );
+function grd_woocommerce_script_cleaner() {
+	if(!is_admin()){
+		remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
+		wp_dequeue_style( 'woocommerce_frontend_styles' );
+		wp_dequeue_style( 'woocommerce-general');
+		wp_dequeue_style( 'woocommerce-layout' );
+		wp_dequeue_style( 'woocommerce-smallscreen' );
+		wp_dequeue_style( 'woocommerce_fancybox_styles' );
+		wp_dequeue_style( 'woocommerce_chosen_styles' );
+		wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
+		wp_dequeue_style( 'select2' );
+		wp_dequeue_script( 'wc-add-payment-method' );
+		wp_dequeue_script( 'wc-lost-password' );
+		wp_dequeue_script( 'wc_price_slider' );
+		// wp_dequeue_script( 'wc-single-product' );
+		wp_dequeue_script( 'wc-add-to-cart' );
+		// wp_dequeue_script( 'wc-cart-fragments' );
+		wp_dequeue_script( 'wc-credit-card-form' );
+		wp_dequeue_script( 'wc-checkout' );
+		wp_dequeue_script( 'wc-add-to-cart-variation' );
+		// wp_dequeue_script( 'wc-single-product' );
+		// wp_dequeue_script( 'wc-cart' );
+		wp_dequeue_script( 'wc-chosen' );
+		// wp_dequeue_script( 'woocommerce' );
+		wp_dequeue_script( 'prettyPhoto' );
+		wp_dequeue_script( 'prettyPhoto-init' );
+		wp_dequeue_script( 'jquery-blockui' );
+		wp_dequeue_script( 'jquery-placeholder' );
+		wp_dequeue_script( 'jquery-payment' );
+		wp_dequeue_script( 'fancybox' );
+		wp_dequeue_script( 'jqueryui' );
+	}
+}
 
 function login_redirect($redirect_to, $request, $user ) {
 	if (isset($user->roles) && is_array($user->roles)) {
 		if (in_array('administrator', $user->roles)) {
-					$redirect_to =  home_url().'/wp-admin';
+				$redirect_to =  home_url().'/wp-admin';
 			} else {
 				$redirect_to =  home_url().'/my-account';
 		}
@@ -1355,3 +1396,146 @@ function my_custom_menu_page() { ?>
 		</form>
 	</div>
 <?php } }
+
+function wpb_widgets_init() {
+	register_sidebar( array(
+		'name' => __( 'Main Sidebar', 'wpb' ),
+		'id' => 'sidebar-1',
+		'description' => __( 'The main sidebar appears on the right on each page except the front page template', 'wpb' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	) );
+}
+
+add_action( 'widgets_init', 'wpb_widgets_init' );
+
+// tắt cập nhật tự động plugin
+add_filter( 'auto_update_plugin', '__return_false' );
+// tắt tự động cập nhật theme
+add_filter( 'auto_update_theme', '__return_false' );
+
+add_action('wp_footer', 'script_footer');
+function script_footer(){?>
+	<script type="text/javascript"> 
+		(function( $ ) {
+			<?php if(is_cart()): ?>
+				// (function( $ ) {
+				// 	$('.woocommerce-cart-form').on('click','.btn-update-cart]',function(){
+				// 		$('form').submit();
+				// 	})
+				// })
+				$('.quantity-plus').on('click',function(e){
+						var val = parseInt($(this).parent().parent().find('.input-qty').val());
+						$(this).parent().parent().find('.input-qty').val( val+1 );
+						update_total_cart($(this), 'plus');
+					});
+				$('.quantity-minus').on('click',function(e){
+					var val = parseInt($(this).parent().parent().find('.input-qty').val());
+					if(val !== 1){
+						$(this).parent().parent().find('.input-qty').val( val-1 );
+						update_total_cart($(this), 'minus');
+					}
+				});
+				function update_total_cart(el, o){
+					var price = parseFloat($(el).closest('.woocommerce-cart-form__cart-item').find('.product-price .woocommerce-Price-amount').text().replace('₫','').replace(/,/g,''));
+					var sub_total = parseFloat($(el).closest('.woocommerce-cart-form__cart-item').find('.product-subtotal .woocommerce-Price-amount').text().replace('₫','').replace(/,/g,''));
+					var total = parseFloat($('.sum-money').find('.color-price .woocommerce-Price-amount').text().replace('₫','').replace(/,/g,''));
+					if( o == 'plus' ){
+						sub_total = sub_total + price;
+						total = total + price;
+					}else{
+						sub_total = sub_total - price;
+						total = total - price;
+					}
+					$(el).closest('.woocommerce-cart-form__cart-item').find('.product-subtotal .woocommerce-Price-amount').text(addCommas(sub_total)+'₫');
+					$('.sum-money').find('.woocommerce-Price-amount').text(addCommas(total)+'₫');
+				}
+				function addCommas(intNum) {
+					return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+				}
+			<?php endif; ?>
+			<?php if(is_product()): ?>
+					$("#commentform").submit(function(e){
+						if($('#comment').val() == ''){
+							alert("Vui lòng viết nhận xét của bạn vào bên dưới!");
+						}else{
+							$.ajax({
+							    url : "<?php echo site_url().'/wp-comments-post.php'; ?>",
+								type : 'POST',
+								data : $(this).serialize(),
+								beforeSend: function(){
+									$('body').append('<div class="loading">&#8230;</div>');
+								},
+							    success: function(data, textStatus, xhr) {
+							        if( xhr.status == '200' ){
+							        	alert('Nhận xét của bạn đã được gửi');
+							        	location.reload();
+
+							        }
+							        $('body').find('.loading').remove()
+							    },
+							    complete: function(xhr, textStatus) {
+							        if( xhr.status == '409' ){
+							        	alert('Dường như bạn đã nhập 1 nhận xét đã tồn tại');
+							        }
+							        $('body').find('.loading').remove()
+							    }
+							});
+						}
+						e.preventDefault();
+					});
+					$('.quantity-plus').on('click',function(e){
+							var val = parseInt($(this).parent().parent().find('.input-qty').val());
+							$(this).parent().parent().find('.input-qty').val( val+1 );
+						});
+					$('.quantity-minus').on('click',function(e){
+						var val = parseInt($(this).parent().parent().find('.input-qty').val());
+						if(val !== 1){
+							$(this).parent().parent().find('.input-qty').val( val-1 );
+						}
+					});
+					$('input[name="attribute_pa_loai-san-pham"]').on('change',function(e){
+						var variation_data = jQuery('form').data('product_variations');
+						var val = $(this).val();
+						$.each(variation_data, function(i, item) {
+							var name = item.attributes['attribute_pa_loai-san-pham'];
+						    if( val == name){
+						    	jQuery('input[name="variation_id"]').val(item.variation_id);
+						    }
+						});
+					});
+					$('form.cart').submit(function(e){ 
+						if( jQuery('input[name="attribute_pa_loai-san-pham"]').prop("checked") == false ){
+							alert('vui lòng chọn loại sản phẩm');
+						}else{
+							$.ajax({
+							    url : $(this).attr('action'),
+								type : 'POST',
+								data : $(this).serialize(),
+								beforeSend: function(){
+									// $('body').append('<div class="loading">Loading&#8230;</div>');
+								},
+							    success: function(data, textStatus, xhr) {
+							    	// alert('Sản phẩm đã được thêm vào giỏ hàng');
+							    	ken_cart_header_reload_action();
+
+							    },
+							    complete: function(xhr, textStatus) {
+							        $('body').find('.loading').remove();							        
+							    	$('.cart-icon').toggleClass('active');
+									setTimeout(function(){
+								        $('.cart-icon').removeClass('active');
+								    },100000);
+							    }
+							});
+
+						}
+						//e.preventDefault();
+					});
+					
+				<?php endif; ?>
+		})(jQuery);
+	</script>
+<?php }

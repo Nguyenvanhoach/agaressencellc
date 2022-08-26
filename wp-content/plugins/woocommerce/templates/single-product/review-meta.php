@@ -19,7 +19,6 @@ defined( 'ABSPATH' ) || exit;
 
 global $comment;
 $verified = wc_review_is_from_verified_owner( $comment->comment_ID );
-
 if ( '0' === $comment->comment_approved ) { ?>
 
 	<p class="meta">

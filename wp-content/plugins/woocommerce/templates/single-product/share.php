@@ -22,5 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 do_action( 'woocommerce_share' ); // Sharing plugins can hook into here.
+if(function_exists('share_social')){share_social();}
+
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

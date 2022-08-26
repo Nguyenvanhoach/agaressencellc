@@ -41,11 +41,31 @@ if ( is_singular() ) {
 
 			<?php
 		}
-
-		if ( is_singular() ) {
-			the_title( '<h2 class="entry-title text-center fw-sim-bold fs-25 text-uppercase mb-4 mb-lg-5">', '</h2>' );
-		} else {
-			the_title( '<h2 class="entry-title text-center fw-sim-bold fs-25 text-uppercase mb-4 mb-lg-5 heading-size-1"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
+		if ( is_page( 'cart' ) || is_cart() ) {
+			echo '<div class="container-xxl"><div class="position-relative my-5">
+				<div class="progress progress-c1" style="height: 2px;">
+					<div class="progress-bar" role="progressbar" style="width: 20%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<div class="position-absolute top-0 translate-middle dot active rounded-circle step-bar" style="left:20%"><div class="position-absolute bottom-100 translate-middle color fs-18">Cart</div></div>
+				<div class="position-absolute top-0 translate-middle dot rounded-circle step-bar" style="left:50%"><div class="position-absolute bottom-100 translate-middle color fs-18">Checkout</div></div>
+				<div class="position-absolute top-0 translate-middle dot rounded-circle step-bar" style="left:80%"><div class="position-absolute bottom-100 translate-middle color fs-18">Confirmation</div></div>
+			</div></div>';
+		} else if(is_checkout()) {
+			echo '<div class="container-xxl"><div class="position-relative my-5">
+				<div class="progress progress-c1" style="height: 2px;">
+					<div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<div class="position-absolute top-0 translate-middle dot active rounded-circle step-bar" style="left:20%"><div class="position-absolute bottom-100 translate-middle color fs-18">Cart</div></div>
+				<div class="position-absolute top-0 translate-middle dot active rounded-circle step-bar" style="left:50%"><div class="position-absolute bottom-100 translate-middle color fs-18">Checkout</div></div>
+				<div class="position-absolute top-0 translate-middle dot rounded-circle step-bar" style="left:80%"><div class="position-absolute bottom-100 translate-middle color fs-18">Confirmation</div></div>
+			</div></div>';
+		}
+		 else {
+			if ( is_singular() ) {
+				the_title( '<h2 class="entry-title text-center fw-sim-bold fs-25 text-uppercase mb-4 mb-lg-5">', '</h2>' );
+			} else {
+				the_title( '<h2 class="entry-title text-center fw-sim-bold fs-25 text-uppercase mb-4 mb-lg-5 heading-size-1"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
+			}
 		}
 
 		$intro_text_width = '';

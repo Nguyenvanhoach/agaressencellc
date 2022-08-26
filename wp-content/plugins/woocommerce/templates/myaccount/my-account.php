@@ -22,11 +22,11 @@ echo '<div class="container-xxl"><div class="row justify-content-center gx-lg-4 
  *
  * @since 2.6.0
  */
-	echo '<div class="col-12 col-md-4">';
+	echo '<div class="col-12 col-sm-4">';
 		do_action( 'woocommerce_account_navigation' ); ?>
 	</div>
-	<div class="col-12 col-md-8">
-		<div class="woocommerce-MyAccount-content bg-white p-4 w-100 h-100">
+	<div class="col-12 col-sm-8">
+		<div class="woocommerce-MyAccount-content bg-white p-4 w-100 h-100 mt-4 mt-sm-0">
 			<?php
 				/**
 				 * My Account content.

@@ -28,16 +28,17 @@ if ( ! wc_review_ratings_enabled() ) {
 $rating_count = $product->get_rating_count();
 $review_count = $product->get_review_count();
 $average      = $product->get_average_rating();
-
-if ( $rating_count > 0 ) : ?>
-
-	<div class="woocommerce-product-rating">
-		<?php echo wc_get_rating_html( $average, $rating_count ); // WPCS: XSS ok. ?>
-		<?php if ( comments_open() ) : ?>
-			<?php //phpcs:disable ?>
-			<a href="#reviews" class="woocommerce-review-link" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer reviews', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
-			<?php // phpcs:enable ?>
-		<?php endif ?>
-	</div>
-
-<?php endif; ?>
+?>
+<div class="woocommerce-product-rating d-flex align-items-center mb-3">
+	<?php if(wc_get_rating_html( $average, $rating_count )){
+		echo wc_get_rating_html( $average, $rating_count ); 
+	} else {
+		echo '<div class="star-rating m-0" role="img"></div>';
+	}
+	// WPCS: XSS ok. ?>
+	<?php if ( comments_open() ) : ?>
+		<?php //phpcs:disable ?>
+		<a href="#reviews" class="woocommerce-review-link text-decoration-none link-hover-1" rel="nofollow">(<?php printf( _n( '%s customer review', '%s customer review', $review_count, 'woocommerce' ), '<span class="count">' . esc_html( $review_count ) . '</span>' ); ?>)</a>
+		<?php // phpcs:enable ?>
+	<?php endif ?>
+</div>

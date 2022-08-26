@@ -21,19 +21,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 global $product;
 ?>
-<div class="product_meta">
+<div class="product_meta mb-4">
 
 	<?php do_action( 'woocommerce_product_meta_start' ); ?>
 
 	<?php if ( wc_product_sku_enabled() && ( $product->get_sku() || $product->is_type( 'variable' ) ) ) : ?>
 
-		<span class="sku_wrapper"><?php esc_html_e( 'SKU:', 'woocommerce' ); ?> <span class="sku"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span></span>
+		<div class="sku_wrapper fw-bold mb-2"><?php esc_html_e( 'SKU:', 'woocommerce' ); ?> <span class="ps-2 sku color-838383 fw-normal"><?php echo ( $sku = $product->get_sku() ) ? $sku : esc_html__( 'N/A', 'woocommerce' ); ?></span></div>
 
 	<?php endif; ?>
 
-	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<span class="posted_in">' . _n( 'Category:', 'Categories:', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+	<?php echo wc_get_product_category_list( $product->get_id(), ', ', '<div class="posted_in mb-2 text-capitalize">' . _n( '<strong class="pe-2">Category:</strong>', '<strong class="pe-2">Categories:</strong>', count( $product->get_category_ids() ), 'woocommerce' ) . ' ', '</div>' ); ?>
 
-	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<span class="tagged_as">' . _n( 'Tag:', 'Tags:', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</span>' ); ?>
+	<?php echo wc_get_product_tag_list( $product->get_id(), ', ', '<div class="tagged_as fw-bold mb-2 text-capitalize">' . _n( '<strong class="pe-2">Tag:</strong>', '<strong class="pe-2">Tags:</strong>', count( $product->get_tag_ids() ), 'woocommerce' ) . ' ', '</div>' ); ?>
 
 	<?php do_action( 'woocommerce_product_meta_end' ); ?>
 

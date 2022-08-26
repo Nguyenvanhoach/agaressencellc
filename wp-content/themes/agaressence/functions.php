@@ -359,11 +359,15 @@ if ( ! function_exists( 'wp_body_open' ) ) {
  *
  * @since Twenty Twenty 1.0
  */
-function twentytwenty_skip_link() {
-	echo '<a class="skip-link screen-reader-text" href="#site-content">' . __( 'Skip to the content', 'twentytwenty' ) . '</a>';
-}
+// function twentytwenty_skip_link() {
+// 	echo '<a class="skip-link screen-reader-text" href="#site-content">' . __( 'Skip to the content', 'twentytwenty' ) . '</a>';
+// }
 
-add_action( 'wp_body_open', 'twentytwenty_skip_link', 5 );
+// add_action( 'wp_body_open', 'twentytwenty_skip_link', 5 );
+
+///XÓa bỏ tag SVG ở body
+remove_action ('wp_body_open', 'wp_global_styles_render_svg_filters');
+
 
 /**
  * Register widget areas.
@@ -794,6 +798,40 @@ function twentytwenty_get_elements_array() {
 // }
 // add_action( 'before_setup_theme', 'customtheme_add_woocommerce_support' );
 
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 10 );
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 10 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_price', 11 );
+
+add_filter( 'woocommerce_sale_flash', 'add_percentage_to_sale_badge', 20, 3 );
+function add_percentage_to_sale_badge( $html, $post, $product ) {
+	if( $product->is_type('variable')){
+			$percentages = array();
+
+			// Get all variation prices
+			$prices = $product->get_variation_prices();
+
+			// Loop through variation prices
+			foreach( $prices['price'] as $key => $price ){
+					// Only on sale variations
+					if( $prices['regular_price'][$key] !== $price ){
+							// Calculate and set in the array the percentage for each variation on sale
+							$percentages[] = round(100 - ($prices['sale_price'][$key] / $prices['regular_price'][$key] * 100));
+					}
+			}
+			$percentage = max($percentages) . '%';
+	} else {
+		$regular_price = (float) $product->get_regular_price();
+		$sale_price    = (float) $product->get_sale_price();
+		if($regular_price > 0) {
+			$percentage    = round(100 - ($sale_price / $regular_price * 100)) . '%';
+		}
+	}
+	if ( $product->price > 0 ) {
+		return '<span class="onsale">' . esc_html__( '-', 'woocommerce' ) . ' ' . $percentage . '</span>';
+	}
+}
+
 function tp_admin_logo() {
 	echo '<br/><img alt="'.get_bloginfo( 'name' ).'" src="'. get_template_directory_uri() .'/assets/images/logo.svg"/>';
 }
@@ -1214,9 +1252,12 @@ function contactForm() {
 	function Post_filters() {
 	    if(isset($_POST['data'])){
 		    $data = $_POST['data']; // nhận dữ liệu từ client
-		    $getposts = new WP_query(); $getposts->query('post_status=publish&showposts=10&s='.$data);
-		    global $wp_query; $wp_query->in_the_loop = true;
-				if($getposts->have_posts()) {
+		    $getposts = new WP_Query(array(
+					'post_type' => 'product','no_found_rows' => true,'cache_results' => false,'include_children' => false,'post_status' => 'publish',
+					'posts_per_page' => 10,'s'=>$data,                         
+				));		
+				global $wp_query; 
+				if($getposts->have_posts()) {global $product,$post;
 					// var_dump();
 					echo '
 				<div class="d-flex justify-content-between">
@@ -1240,9 +1281,11 @@ function contactForm() {
 	    }
 	}
 
+	
+	
+
 
 // REMOVE WP EMOJI
-remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
 remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
 remove_action( 'admin_print_styles', 'print_emoji_styles' );
@@ -1261,34 +1304,35 @@ add_action( 'wp_enqueue_scripts', 'grd_woocommerce_script_cleaner', 99 );
 function grd_woocommerce_script_cleaner() {
 	if(!is_admin()){
 		remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
-		wp_dequeue_style( 'woocommerce_frontend_styles' );
-		wp_dequeue_style( 'woocommerce-general');
 		wp_dequeue_style( 'woocommerce-layout' );
 		wp_dequeue_style( 'woocommerce-smallscreen' );
 		wp_dequeue_style( 'woocommerce_fancybox_styles' );
-		wp_dequeue_style( 'woocommerce_chosen_styles' );
 		wp_dequeue_style( 'woocommerce_prettyPhoto_css' );
-		wp_dequeue_style( 'select2' );
-		wp_dequeue_script( 'wc-add-payment-method' );
-		wp_dequeue_script( 'wc-lost-password' );
+		wp_dequeue_script( 'fancybox' );
 		wp_dequeue_script( 'wc_price_slider' );
-		// wp_dequeue_script( 'wc-single-product' );
-		wp_dequeue_script( 'wc-add-to-cart' );
-		// wp_dequeue_script( 'wc-cart-fragments' );
-		wp_dequeue_script( 'wc-credit-card-form' );
-		wp_dequeue_script( 'wc-checkout' );
-		wp_dequeue_script( 'wc-add-to-cart-variation' );
-		// wp_dequeue_script( 'wc-single-product' );
-		// wp_dequeue_script( 'wc-cart' );
-		wp_dequeue_script( 'wc-chosen' );
-		// wp_dequeue_script( 'woocommerce' );
 		wp_dequeue_script( 'prettyPhoto' );
 		wp_dequeue_script( 'prettyPhoto-init' );
-		wp_dequeue_script( 'jquery-blockui' );
-		wp_dequeue_script( 'jquery-placeholder' );
-		wp_dequeue_script( 'jquery-payment' );
-		wp_dequeue_script( 'fancybox' );
 		wp_dequeue_script( 'jqueryui' );
+
+		//wp_dequeue_style( 'woocommerce_frontend_styles' );
+		//wp_dequeue_style( 'woocommerce-general');
+		//wp_dequeue_style( 'woocommerce_chosen_styles' );
+		//wp_dequeue_style( 'select2' );
+		//wp_dequeue_script( 'wc-add-payment-method' );
+		//wp_dequeue_script( 'wc-lost-password' );
+		// wp_dequeue_script( 'wc-single-product' );
+		//wp_dequeue_script( 'wc-add-to-cart' );
+		// wp_dequeue_script( 'wc-cart-fragments' );
+		// wp_dequeue_script( 'wc-credit-card-form' );
+		// wp_dequeue_script( 'wc-checkout' );
+		// wp_dequeue_script( 'wc-add-to-cart-variation' );
+		// wp_dequeue_script( 'wc-single-product' );
+		// wp_dequeue_script( 'wc-cart' );
+		//wp_dequeue_script( 'wc-chosen' );
+		// wp_dequeue_script( 'woocommerce' );
+		// wp_dequeue_script( 'jquery-blockui' );
+		// wp_dequeue_script( 'jquery-placeholder' );
+		// wp_dequeue_script( 'jquery-payment' );
 	}
 }
 
@@ -1457,35 +1501,35 @@ function script_footer(){?>
 				}
 			<?php endif; ?>
 			<?php if(is_product()): ?>
-					$("#commentform").submit(function(e){
-						if($('#comment').val() == ''){
-							alert("Vui lòng viết nhận xét của bạn vào bên dưới!");
-						}else{
-							$.ajax({
-							    url : "<?php echo site_url().'/wp-comments-post.php'; ?>",
-								type : 'POST',
-								data : $(this).serialize(),
-								beforeSend: function(){
-									$('body').append('<div class="loading">&#8230;</div>');
-								},
-							    success: function(data, textStatus, xhr) {
-							        if( xhr.status == '200' ){
-							        	alert('Nhận xét của bạn đã được gửi');
-							        	location.reload();
+					// $("#commentform").submit(function(e){
+					// 	if($('#comment').val() == ''){
+					// 		alert("Vui lòng viết nhận xét của bạn vào bên dưới!");
+					// 	}else{
+					// 		$.ajax({
+					// 		    url : "<?php echo site_url().'/wp-comments-post.php'; ?>",
+					// 			type : 'POST',
+					// 			data : $(this).serialize(),
+					// 			beforeSend: function(){
+					// 				$('body').append('<div class="loading">&#8230;</div>');
+					// 			},
+					// 		    success: function(data, textStatus, xhr) {
+					// 		        if( xhr.status == '200' ){
+					// 		        	alert('Nhận xét của bạn đã được gửi');
+					// 		        	location.reload();
 
-							        }
-							        $('body').find('.loading').remove()
-							    },
-							    complete: function(xhr, textStatus) {
-							        if( xhr.status == '409' ){
-							        	alert('Dường như bạn đã nhập 1 nhận xét đã tồn tại');
-							        }
-							        $('body').find('.loading').remove()
-							    }
-							});
-						}
-						e.preventDefault();
-					});
+					// 		        }
+					// 		        $('body').find('.loading').remove()
+					// 		    },
+					// 		    complete: function(xhr, textStatus) {
+					// 		        if( xhr.status == '409' ){
+					// 		        	alert('Dường như bạn đã nhập 1 nhận xét đã tồn tại');
+					// 		        }
+					// 		        $('body').find('.loading').remove()
+					// 		    }
+					// 		});
+					// 	}
+					// 	e.preventDefault();
+					// });
 					$('.quantity-plus').on('click',function(e){
 							var val = parseInt($(this).parent().parent().find('.input-qty').val());
 							$(this).parent().parent().find('.input-qty').val( val+1 );
@@ -1539,3 +1583,65 @@ function script_footer(){?>
 		})(jQuery);
 	</script>
 <?php }
+function share_social() { ?>
+	<div class="action-post d-flex flex-wrap align-items-center my-4">
+		<div class="item-g me-2 me-md-3 mb-3 fw-bold fs-15 letter-spacing-015">Share On:</div>
+		<div class="share-social d-flex flex-wrap align-items-center">
+			<a class="me-3 me-sm-2 me-md-3 fb mb-3" title="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u=<?php echo urlencode(get_permalink()); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M400 32H48A48 48 0 0 0 0 80v352a48 48 0 0 0 48 48h137.25V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.27c-30.81 0-40.42 19.12-40.42 38.73V256h68.78l-11 71.69h-57.78V480H400a48 48 0 0 0 48-48V80a48 48 0 0 0-48-48z"/></svg></a>
+			<a class="me-3 me-sm-2 me-md-3 twinter mb-3" title="Share on Twinter" href="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title()); ?>+<?php echo get_permalink(); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"/></svg></a>
+			<a class="me-3 me-sm-2 me-md-3 linkedin mb-3" title="Share on Linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url=<?php echo urlencode(get_permalink()); ?>&title=<?php echo get_the_title(get_the_ID()); ?>&source=<?php echo site_url();?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>			    
+			<a class="me-3 me-sm-2 me-md-3 instagram mb-3" title="Share on Instagram" href="https://www.instagram.com/?url=<?php echo urlencode(get_permalink()); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224,202.66A53.34,53.34,0,1,0,277.36,256,53.38,53.38,0,0,0,224,202.66Zm124.71-41a54,54,0,0,0-30.41-30.41c-21-8.29-71-6.43-94.3-6.43s-73.25-1.93-94.31,6.43a54,54,0,0,0-30.41,30.41c-8.28,21-6.43,71.05-6.43,94.33S91,329.26,99.32,350.33a54,54,0,0,0,30.41,30.41c21,8.29,71,6.43,94.31,6.43s73.24,1.93,94.3-6.43a54,54,0,0,0,30.41-30.41c8.35-21,6.43-71.05,6.43-94.33S357.1,182.74,348.75,161.67ZM224,338a82,82,0,1,1,82-82A81.9,81.9,0,0,1,224,338Zm85.38-148.3a19.14,19.14,0,1,1,19.13-19.14A19.1,19.1,0,0,1,309.42,189.74ZM400,32H48A48,48,0,0,0,0,80V432a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V80A48,48,0,0,0,400,32ZM382.88,322c-1.29,25.63-7.14,48.34-25.85,67s-41.4,24.63-67,25.85c-26.41,1.49-105.59,1.49-132,0-25.63-1.29-48.26-7.15-67-25.85s-24.63-41.42-25.85-67c-1.49-26.42-1.49-105.61,0-132,1.29-25.63,7.07-48.34,25.85-67s41.47-24.56,67-25.78c26.41-1.49,105.59-1.49,132,0,25.63,1.29,48.33,7.15,67,25.85s24.63,41.42,25.85,67.05C384.37,216.44,384.37,295.56,382.88,322Z"/></svg></a>
+			<a class="pinterest mb-3" title="Share on Pinterest" href="https://www.pinterest.com/pin/create/link/?url=<?php echo urlencode(get_permalink()); ?>&media=<?php echo the_post_thumbnail_url('large'); ?>&description=<?php echo get_the_title(get_the_ID()); ?>" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M448 80v352c0 26.5-21.5 48-48 48H154.4c9.8-16.4 22.4-40 27.4-59.3 3-11.5 15.3-58.4 15.3-58.4 8 15.3 31.4 28.2 56.3 28.2 74.1 0 127.4-68.1 127.4-152.7 0-81.1-66.2-141.8-151.4-141.8-106 0-162.2 71.1-162.2 148.6 0 36 19.2 80.8 49.8 95.1 4.7 2.2 7.1 1.2 8.2-3.3.8-3.4 5-20.1 6.8-27.8.6-2.5.3-4.6-1.7-7-10.1-12.3-18.3-34.9-18.3-56 0-54.2 41-106.6 110.9-106.6 60.3 0 102.6 41.1 102.6 99.9 0 66.4-33.5 112.4-77.2 112.4-24.1 0-42.1-19.9-36.4-44.4 6.9-29.2 20.3-60.7 20.3-81.8 0-53-75.5-45.7-75.5 25 0 21.7 7.3 36.5 7.3 36.5-31.4 132.8-36.1 134.5-29.6 192.6l2.2.8H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48z"/></svg></a>
+		</div>
+	</div>
+<?php }
+// add_filter('woocommerce_checkout_fields', 'addBootstrapToCheckoutFields' );
+// function addBootstrapToCheckoutFields($fields) {
+//     foreach ($fields as &$fieldset) {
+//         foreach ($fieldset as &$field) {
+//             // if you want to add the form-group class around the label and the input
+//             $field['class'][] = 'form-group'; 
+
+//             // add form-control to the actual input
+//             $field['input_class'][] = 'form-control';
+//         }
+//     }
+//     return $fields;
+// }
+function recent_post($name_category = 'blogs',$postPage = 3) {
+	$the_query = new WP_Query( array( 'category_name' => $name_category, 'posts_per_page' => $postPage) );
+	if ( $the_query->have_posts() ) {
+
+		// $getnamecategory = get_category_by_slug($name_category)->name;
+		echo '<div class="post-related pt-3"><h3 class="fs-25 mb-0">Related Posts</h3><div class="line-2 my-4"></div><div class="row gx-3 gx-xl-4 gy-3 gy-lg-4 mb-4 mb-lg-5">';
+		while ( $the_query->have_posts() ) {
+			$the_query->the_post();
+			$number_comment = get_comments_number(get_the_ID());
+			$text_comment = '';
+			if($number_comment>0) {
+				$text_comment = '<a class="d-block text-black text-decoration-none" href="' . get_the_permalink() . '#comments" title="' . get_the_title() .'">'. $number_comment . ' Comment' . '</a>';
+				
+			} else {
+				$text_comment = '<a class="d-block text-black text-decoration-none" href="' . get_the_permalink() . '#respond" title="' . get_the_title() .'">' . 'Leave a Comment' . '</a>';
+				
+			}
+
+			echo '<div class="col-12 col-sm-4 col-md-4 col-lg-4"><div class="bg-white h-100 overflow-hidden d-block text-decoration-none border">
+				<a class="position-relative overflow-hidden effect-2 img-bg-2 d-block" href="' . get_the_permalink() . '" title="' . get_the_title() .'">'. get_the_post_thumbnail(get_the_ID(), 'full', array( 'class' => 'img-fluid object-fit w-100 h-100','loading' => 'lazy','alt' => get_the_title() )) .'	</a>
+				<div class="p-4 p-sm-3 p-lg-4">
+					<div class="d-flex">
+						<div class="fw-medium fs-13 text-black mb-3 border-end border-2 me-2 pe-2 d-inline-flex"><svg class="icon-svg-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M152 64H296V24C296 10.75 306.7 0 320 0C333.3 0 344 10.75 344 24V64H384C419.3 64 448 92.65 448 128V448C448 483.3 419.3 512 384 512H64C28.65 512 0 483.3 0 448V128C0 92.65 28.65 64 64 64H104V24C104 10.75 114.7 0 128 0C141.3 0 152 10.75 152 24V64zM48 448C48 456.8 55.16 464 64 464H384C392.8 464 400 456.8 400 448V192H48V448z"/></svg><span class="ps-2">'.get_the_date().'</span></div>	
+						<div class="fw-medium fs-13 text-black  mb-3 d-inline-flex"><svg class="icon-svg-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 32C114.6 32 .0272 125.1 .0272 240c0 49.63 21.35 94.98 56.97 130.7c-12.5 50.37-54.27 95.27-54.77 95.77c-2.25 2.25-2.875 5.734-1.5 8.734C1.979 478.2 4.75 480 8 480c66.25 0 115.1-31.76 140.6-51.39C181.2 440.9 217.6 448 256 448c141.4 0 255.1-93.13 255.1-208S397.4 32 256 32z"/></svg><span class="ps-2">'.$text_comment.'</span></div>	
+					</div>
+					<div class="fw-bold fs-18 mb-3 text-capitalize text-black link-hover-1">' . get_the_title() .'</div>
+					<div class="fs-15 color-828282 mb-3">'.wp_strip_all_tags( get_the_excerpt(), true ).'</div>
+					<a class="text-black link-hover-1 fw-medium" href="' . get_the_permalink() . '" title="' . get_the_title() .'">Read More</a>
+				</div>
+			</div></div>';
+		}
+	echo '</div></div>';
+	}else{/*no posts found*/}
+	return $string;
+	/* Restore original Post Data */
+	wp_reset_postdata();
+}

@@ -24,10 +24,11 @@ if ( ! $notices ) {
 }
 
 ?>
-<ul class="woocommerce-error" role="alert">
+<div class="container-xxl">
+<ul class="woocommerce-error mb-3 list-unstyled" role="alert">
 	<?php foreach ( $notices as $notice ) : ?>
-		<li<?php echo wc_get_notice_data_attr( $notice ); ?>>
+		<li class="mt-2" <?php echo wc_get_notice_data_attr( $notice ); ?>>
 			<?php echo wc_kses_notice( $notice['notice'] ); ?>
 		</li>
 	<?php endforeach; ?>
-</ul>
+</ul></div>

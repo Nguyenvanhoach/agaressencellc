@@ -1,0 +1,14 @@
+2022-08-26T13:22:11+00:00 CRITICAL Uncaught Error: Call to undefined function custom_search_form() in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\archive.php:37
+Stack trace:
+#0 G:\Pxamp\agaressencellc\wp-includes\template-loader.php(106): include()
+#1 G:\Pxamp\agaressencellc\wp-blog-header.php(19): require_once('G:\\Pxamp\\agares...')
+#2 G:\Pxamp\agaressencellc\index.php(17): require('G:\\Pxamp\\agares...')
+#3 {main}
+  thrown in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\archive.php on line 37
+
+2022-08-26T14:51:42+00:00 CRITICAL syntax error, unexpected end of file in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\template-parts\content.php on line 133
+
+2022-08-26T14:52:00+00:00 CRITICAL syntax error, unexpected end of file in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\template-parts\content.php on line 133
+
+2022-08-26T14:55:13+00:00 CRITICAL syntax error, unexpected end of file in G:\Pxamp\agaressencellc\wp-content\themes\agaressence\functions.php on line 1648
+

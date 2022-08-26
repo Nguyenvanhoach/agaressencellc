@@ -24,9 +24,9 @@ if ( ! comments_open() ) {
 }
 
 ?>
-<div id="reviews" class="woocommerce-Reviews">
+<div id="reviews" class="woocommerce-Reviews bg-white p-4 color-828282">
 	<div id="comments">
-		<h2 class="woocommerce-Reviews-title">
+		<h5 class="woocommerce-Reviews-title mb-4 fw-bold text-black d-none">
 			<?php
 			$count = $product->get_review_count();
 			if ( $count && wc_review_ratings_enabled() ) {
@@ -37,7 +37,7 @@ if ( ! comments_open() ) {
 				esc_html_e( 'Reviews', 'woocommerce' );
 			}
 			?>
-		</h2>
+		</h5>
 
 		<?php if ( have_comments() ) : ?>
 			<ol class="commentlist">
@@ -103,13 +103,13 @@ if ( ! comments_open() ) {
 
 				foreach ( $fields as $key => $field ) {
 					$field_html  = '<p class="comment-form-' . esc_attr( $key ) . '">';
-					$field_html .= '<label for="' . esc_attr( $key ) . '">' . esc_html( $field['label'] );
+					$field_html .= '<label class="mb-1" for="' . esc_attr( $key ) . '">' . esc_html( $field['label'] );
 
 					if ( $field['required'] ) {
 						$field_html .= '&nbsp;<span class="required">*</span>';
 					}
 
-					$field_html .= '</label><input id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" size="30" ' . ( $field['required'] ? 'required' : '' ) . ' /></p>';
+					$field_html .= '</label><input class="form-control" id="' . esc_attr( $key ) . '" name="' . esc_attr( $key ) . '" type="' . esc_attr( $field['type'] ) . '" value="' . esc_attr( $field['value'] ) . '" size="30" ' . ( $field['required'] ? 'required' : '' ) . ' /></p>';
 
 					$comment_form['fields'][ $key ] = $field_html;
 				}
@@ -131,7 +131,7 @@ if ( ! comments_open() ) {
 					</select></div>';
 				}
 
-				$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__( 'Your review', 'woocommerce' ) . '&nbsp;<span class="required">*</span></label><textarea id="comment" name="comment" cols="45" rows="8" required></textarea></p>';
+				$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment" class="mb-1">' . esc_html__( 'Your review', 'woocommerce' ) . '&nbsp;<span class="required">*</span></label><textarea class="form-control" id="comment" name="comment" cols="45" rows="5" required></textarea></p>';
 
 				comment_form( apply_filters( 'woocommerce_product_review_comment_form_args', $comment_form ) );
 				?>

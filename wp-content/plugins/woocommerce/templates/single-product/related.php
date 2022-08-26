@@ -28,7 +28,7 @@ if ( $related_products ) : ?>
 
 		if ( $heading ) :
 			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
+			<h3 class="fw-bold fs-25 mb-0"><?php echo esc_html( $heading ); ?></h3><div class="line-2 my-4"></div>
 		<?php endif; ?>
 		
 		<?php woocommerce_product_loop_start(); ?>
@@ -39,7 +39,6 @@ if ( $related_products ) : ?>
 					$post_object = get_post( $related_product->get_id() );
 
 					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-
 					wc_get_template_part( 'content', 'product' );
 					?>
 

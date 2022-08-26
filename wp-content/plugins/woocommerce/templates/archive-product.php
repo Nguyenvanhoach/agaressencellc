@@ -31,17 +31,8 @@ echo '<div class="bg-efefef pb-5">';
 	echo '</div>';
 	?>
 	<div class="container-xxl">
-		<div class="row gx-lg-4 gx-xl-5">
-			<?php echo '<div class="col-12 col-md-4 col-lg-3"><div class="cus-slide-bar">';
-				/**
-				 * Hook: woocommerce_sidebar.
-				 *
-				 * @hooked woocommerce_get_sidebar - 10
-				 */
-				do_action( 'woocommerce_sidebar' );
-
-			echo '</div></div>'; ?>
-			<div class="col-12 col-md-8 col-lg-9">
+		<div class="row gx-lg-4 gx-xl-5 gy-4">
+			<div class="col-12 col-md-8 col-lg-9 order-md-1">
 				<div class="woocommerce-products-header">
 					<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
 						<h2 class="woocommerce-products-header__title page-title entry-title fw-sim-bold fs-25 text-uppercase mb-1"><?php woocommerce_page_title(); ?></h2>
@@ -112,7 +103,16 @@ echo '<div class="bg-efefef pb-5">';
 			
 			
 
-			echo '</div>
+			echo '</div>';
+			echo '<div class="col-12 col-md-4 col-lg-3"><div class="cus-slide-bar">';
+				/**
+				 * Hook: woocommerce_sidebar.
+				 *
+				 * @hooked woocommerce_get_sidebar - 10
+				 */
+				do_action( 'woocommerce_sidebar' );
+
+			echo '</div></div>
 		</div>
 	</div>
 </div>';

@@ -19,7 +19,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
-
+$delimiter = "»";
 if ( ! empty( $breadcrumb ) ) {
 	
 	echo $wrap_before;
@@ -29,7 +29,7 @@ if ( ! empty( $breadcrumb ) ) {
 		echo $before;
 
 		if ( ! empty( $crumb[1] ) && sizeof( $breadcrumb ) !== $key + 1 ) {
-			echo '<a href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
+			echo '<a class="text-link text-decoration-none" href="' . esc_url( $crumb[1] ) . '">' . esc_html( $crumb[0] ) . '</a>';
 		} else {
 			echo esc_html( $crumb[0] );
 		}
@@ -37,7 +37,7 @@ if ( ! empty( $breadcrumb ) ) {
 		echo $after;
 
 		if ( sizeof( $breadcrumb ) !== $key + 1 ) {
-			echo $delimiter;
+			echo '<span class="color-383838 px-1">'.$delimiter. '</span>';
 		}
 	}
 

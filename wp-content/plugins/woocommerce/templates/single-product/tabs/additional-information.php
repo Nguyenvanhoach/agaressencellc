@@ -22,9 +22,10 @@ global $product;
 $heading = apply_filters( 'woocommerce_product_additional_information_heading', __( 'Additional information', 'woocommerce' ) );
 
 ?>
+<div class="bg-white p-4">
+	<?php if ( $heading ) : ?>
+		<!-- <h2><?php echo esc_html( $heading ); ?></h2> -->
+	<?php endif; ?>
 
-<?php if ( $heading ) : ?>
-	<h2><?php echo esc_html( $heading ); ?></h2>
-<?php endif; ?>
-
-<?php do_action( 'woocommerce_product_additional_information', $product ); ?>
+	<?php do_action( 'woocommerce_product_additional_information', $product ); ?>
+</div>

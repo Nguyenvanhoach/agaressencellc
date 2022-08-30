@@ -335,6 +335,7 @@ header#header .offcanvas-start {
 #top-menu li .sub-menu {display: none;}
 
 .index-2 {z-index: 2;}
+.index-100 {z-index: 100;}
 .color-svg path {fill:#8f8e8e;}
 .icon-user {width: 20px;}
 .icon-g-1 {
@@ -1664,36 +1665,44 @@ td {
   -ms-box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 7%);
   box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 7%);
 }
+.box-shadow-2 {
+  -webkit-box-shadow: 0px 0px 10px 0px hsl(0deg 0% 21% / 21%);
+  -moz-box-shadow: 0px 0px 10px 0px hsl(0deg 0% 21% / 21%);
+  box-shadow: 0px 0px 10px 0px hsl(0deg 0% 21% / 21%);
+}
 .img-format-1 {
-  padding-top: 100%;
+  padding-top: 85%;
   position: relative;
   overflow: hidden;
   background: #fff;
 }
 .img-format-1 img{
   position: absolute;
-  height: auto !important;
-  width: auto !important;
+  height: 100%;
+  width: 100%;
   max-width: 100%;
   max-height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  top: 50%;
+  left: 50%;
   display: block;
   margin: 0;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
   transition: all 500ms ease;
   -webkit-transition: all 500ms ease;
   -moz-transition: all 500ms ease;
   -ms-transition: all 500ms ease;
   -o-transition: all 500ms ease;
+  transform: translate(-50%,-50%);
+  -webkit-transform: translate(-50%,-50%);
+  -moz-transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+  -o-transform: translate(-50%,-50%);
   image-rendering: -webkit-optimize-contrast;
 }
 .img-format-1:hover img {
-  -webkit-transform: scale(1.1, 1.1);
-  transform: scale(1.1, 1.1);
+  -webkit-transform: scale(1.1, 1.1) translate(-50%,-50%);
+  transform: scale(1.1, 1.1) translate(-50%,-50%);
 }
 
 .img-format-2 {
@@ -1810,6 +1819,14 @@ td {
 .btn-red-more:hover,.btn-red-more:focus {
   color: #fff;
   background: #000;
+}
+.accordion-faqs .accordion-header .accordion-button:not(.collapsed)::after {
+  content: "";
+  background-image:url(assets/images/download.svg); 
+}
+.accordion-faqs .accordion-header .accordion-button:not(.collapsed) {
+  color: #fff;
+  background: #1c1c1c;
 }
 
 @media (min-width: 1200px) {

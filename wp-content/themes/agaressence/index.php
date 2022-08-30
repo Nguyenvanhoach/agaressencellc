@@ -47,7 +47,7 @@ $args_tax = array('taxonomy' => $taxonomy,'hide_empty' => 1,'parent' => 0,);//'e
 						if ( $product->is_on_sale() ) {
 							$sale = apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( '-', 'woocommerce' ) . '</span>', $post, $product );
 						}
-						echo '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3c prod-num-'. $stt .'"><a href="'.get_the_permalink().'" title="'. get_the_title().'" class="d-block text-decoration-none text-black text-left item-product bg-white pb-3">
+						echo '<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3c prod-num-'. $stt .'"><a href="'.get_the_permalink().'" title="'. get_the_title().'" class="d-block text-decoration-none text-black text-left item-product bg-white pb-3 box-shadow-2">
 						<div class="position-relative mb-3 img-format-1">'.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid d-block', 'alt' => '', 'loading' => 'lazy')).'
 						'.$sale.'
 						</div>
@@ -74,7 +74,7 @@ $args_tax = array('taxonomy' => $taxonomy,'hide_empty' => 1,'parent' => 0,);//'e
 					<div class="row justify-content-center"><div class="col-12 col-md-10 col-lg-9 col-xl-8 text-center mb-3 color-838383">'.$cat->description.'</div></div>
 					<img loading="lazy" class="img-fluid mx-auto d-block mb-4 mb-xl-5 img-line" src="'.get_template_directory_uri().'/assets/images/line.png" alt="'.$cat->name.'">';
 					if($cat_img) {
-						echo '<div class="position-relative effect-2"><img loading="lazy" class="img-fluid mx-auto d-block w-100 mb-4 mb-xl-5" src="'.$cat_img.'" alt="'.$cat->name.'"><a class="position-absolute bottom-0 end-0 px-2 py-1 text-decoration-none view-all mb-2 me-2" href="'. get_term_link($cat->slug, $taxonomy) .'" title="'.$cat->name.'">View All</a></div>';
+						echo '<div class="position-relative effect-2 mb-4 mb-xl-5"><img loading="lazy" class="img-fluid mx-auto d-block w-100 " src="'.$cat_img.'" alt="'.$cat->name.'"><a class="position-absolute bottom-0 end-0 px-2 py-1 text-decoration-none view-all mb-2 me-2 index-100" href="'. get_term_link($cat->slug, $taxonomy) .'" title="'.$cat->name.'">View All</a></div>';
 					}
 					$q_Post = new WP_Query(array(
 						'post_type' => 'product','no_found_rows' => true,'cache_results' => false,'include_children' => false,
@@ -92,7 +92,7 @@ $args_tax = array('taxonomy' => $taxonomy,'hide_empty' => 1,'parent' => 0,);//'e
 								if ( $product->is_on_sale() ) {
 									$sale = apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( '-', 'woocommerce' ) . '</span>', $post, $product );
 								}
-								echo '<div class="col-12 col-sm-6 col-lg-4 col-xl-3 prod-num-'. $stt .'"><a href="'.get_the_permalink().'" title="'. get_the_title().'" class="d-block text-decoration-none text-black text-left item-product bg-white pb-3">
+								echo '<div class="col-12 col-sm-6 col-lg-4 col-xl-3 prod-num-'. $stt .'"><a href="'.get_the_permalink().'" title="'. get_the_title().'" class="d-block text-decoration-none text-black text-left item-product bg-white pb-3 box-shadow-2">
 								<div class="position-relative mb-3 img-format-1">'.get_the_post_thumbnail( get_the_id(), 'full', array( 'class' =>'img-fluid mx-auto', 'alt' => '', 'loading' => 'lazy')).''.$sale.'	</div>
 								<h3 class="mb-2 fs-15 fw-smi-bold color-333 text-capitalize px-3">'. get_the_title().'</h3>
 								<div class="wrap-price px-3">'. $product->get_price_html().'</div>

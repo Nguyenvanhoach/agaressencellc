@@ -1054,7 +1054,7 @@ function thongbao_init() {
 function contactForm() {
 	$success = '';  $errcaptacha = ''; 
  if(isset($_POST['btn-send']) ) { 
-	 $address_company = '15 Nguyen Luong Bang Tan Phu Ward, District 7, Ho Chi Minh City, Vietnam';$phone_company = '+84 898 104 714';$mail_company = 'contact@tcdata.vn';
+	 $address_company = '18 Grantchester Place Gaithersburg, Maryland 20877 US';$phone_company = '+84 898 104 714';$mail_company = 'agaressencellc@gmail.com';
 	 if(get_option('address_company') !='') {
 		 $address_company = get_option('address_company');
 	 }
@@ -1064,30 +1064,28 @@ function contactForm() {
 	 if(get_option('hotline') !='') {
 		 $hotline = get_option('hotline');
 	 }
-	 if(get_option('mail_company') !='') {
-		 $mail_company = get_option('mail_company');
+	 if(get_bloginfo('admin_email') !='') {
+		 $mail_company = get_bloginfo('admin_email');
 	 }
 	 if(isset($_POST['g-recaptcha-response'])){  
 		 $tut_captcha=$_POST['g-recaptcha-response'];
 	 } 
 	 if(!$tut_captcha){
-		 $errcaptacha = '<div class="text-danger">Bạn chưa xác thực reCAPTCHA!.</div>';
+		 $errcaptacha = '<div class="text-danger">You have not authenticated reCAPTCHA!.</div>';
 	 }  
 	 $kiemtra=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcoEGIhAAAAAHQGA75fwhM0Kml_unne4jYmkxks&response=".$tut_captcha."&remoteip=".$_SERVER['REMOTE_ADDR']);
 	 
 	 $kiemtra = json_decode($kiemtra);
 	 
 	 if($kiemtra->success == false) {
-		 $errcaptacha = 'Bạn đã nhập sai mã Captcha ?';
-		 echo '<script> window.alert("Bạn chưa chọn Captcha ?");
+		 $errcaptacha = 'Did you enter the wrong Captcha code?';
+		 echo '<script> window.alert("Please confirm the Captcha check.");
 				 window.location = "'.get_bloginfo( 'url' ).'/contact-us"</script>';	
 		 die();
 	 } else {
 		 $firstName = trim($_POST['first-name']);
 		 $lastName = trim($_POST['last-name']);
-		 $helpYou = trim($_POST['help-you']);
-		 $yourCompany = trim($_POST['your-company']);
-		 $businessEmail = trim($_POST['business-email']);
+		 $businessEmail = trim($_POST['your-email']);
 		 $phoneNumber = trim($_POST['phone-number']);
 		 $yourMessage = trim($_POST['your-message']);
 		 $result = array('status' => 0);
@@ -1121,7 +1119,7 @@ function contactForm() {
 							 $body.="<img src='".get_template_directory_uri()."/assets/images/logo.png' style='border:0;max-width: 100%;height: auto' alt='".get_bloginfo( 'name' )."'></a>
 						 </td>
 						 <td width='30' align='left' style='padding:0;margin:0;font-family:Arial,Helvetica,sans-serif'></td>
-						 <td width='90' align='left' style='padding:0;margin:0;font-family:Arial,Helvetica,sans-serif'><a href='".get_bloginfo( 'url' )."/introduction' style='text-decoration:none;font-family:Arial,Helvetica,sans-serif;color:#333333;font-size:12px;line-height:20px;display:inline-block' target='_blank'>Introduction</a></td>
+						 <td width='90' align='left' style='padding:0;margin:0;font-family:Arial,Helvetica,sans-serif'><a href='".get_bloginfo( 'url' )."/about-us' style='text-decoration:none;font-family:Arial,Helvetica,sans-serif;color:#333333;font-size:12px;line-height:20px;display:inline-block' target='_blank'>Introduction</a></td>
 						 <td width='30' align='left' style='padding:0;margin:0;font-family:Arial,Helvetica,sans-serif'></td>
 						 <td width='90' align='left' style='padding:0;margin:0;font-family:Arial,Helvetica,sans-serif'><a href='".get_bloginfo( 'url' )."/contact-us' style='text-decoration:none;font-family:Arial,Helvetica,sans-serif;color:#333333;font-size:12px;line-height:20px;display:inline-block' target='_blank'>Contact us</a></td>
 					 </tr>
@@ -1151,11 +1149,9 @@ function contactForm() {
 														 <td style='padding:18px 10px 0 24px;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#666666'>
 														 <div style='background-color: #eee;border:2px solid #f50; padding:20px;margin-bottom:15px'>
 															 <div style='margin-bottom:10px;'>Full name: <b>".$firstName." ".$lastName." </b></div>
-															 <div style='margin-bottom:10px;'>What can we help you with?: <b>".$helpYou."</b></div>
-															 <div style='margin-bottom:10px;'>Your company: <b>".$yourCompany."</b></div>
-															 <div style='margin-bottom:10px;'>Business email: <b>".$businessEmail."</b></div>
+															 <div style='margin-bottom:10px;'>E-mail: <b>".$businessEmail."</b></div>
 															 <div style='margin-bottom:10px;'>Phone number: <b>".$phoneNumber."</b></div>
-															 <div>Nội dung: <b>".$yourMessage."</b></div>
+															 <div>Your Message: <b>".$yourMessage."</b></div>
 														 </div>
 														 </td>
 													 </tr>
